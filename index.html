@@ -8,7 +8,7 @@
 </head>
 <body>
     <div>
-        <h1>팜므어 번역기</h1>
+        <h1>팜므어 번역기 조성욱</h1>
         <textarea name="" id="" cols="30" rows="10"></textarea>
         <button>번역</button>
         <div class="result"></div>
@@ -21,21 +21,23 @@
         var textareaArr = textareaValue.split("") //
         textareaArr.map(function(gulja){
           var dsassembleArr = Hangul.disassemble(gulja);  
-          var isElementFour = disassemble.length === 4
-          var isMoem = Hangul.isVowel(disassembleArr[1])&&Hangul.isVowel(disassembleArr[2]) 
+          var isElementFour = dsassembleArr.length === 4
+          var isMoem = Hangul.isVowel(dsassembleArr[1])&&Hangul.isVowel(dsassembleArr[2]) 
 
           if(isElementFour && isMoem){
               var tmp= dsassembleArr[3];
               dsassembleArr[3] = dsassembleArr[2];
               dsassembleArr[2] = tmp;
-              console.log("바꿔야 한다.");
+              
           }
+          return Hangul.assemble(disassembleArr)
         })
+        return changeValue.join('');
      }
 
      document.querySelector('button').addEventListener('click',function(){
          console.log("클릭");
-         checkTextarea();
+         document.querySelector('.result').innerText = checkTextarea()
      })
     </script>
     
