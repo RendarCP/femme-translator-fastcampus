@@ -16,6 +16,27 @@
     <script src="./hangul.js"></script>
     <script>
         console.log("하이하이")
+     function checkTextarea() {
+        var textareaValue = document.querySelector('textarea').value
+        var textareaArr = textareaValue.split("") //
+        textareaArr.map(function(gulja){
+          var dsassembleArr = Hangul.disassemble(gulja);  
+          var isElementFour = disassemble.length === 4
+          var isMoem = Hangul.isVowel(disassembleArr[1])&&Hangul.isVowel(disassembleArr[2]) 
+
+          if(isElementFour && isMoem){
+              var tmp= dsassembleArr[3];
+              dsassembleArr[3] = dsassembleArr[2];
+              dsassembleArr[2] = tmp;
+              console.log("바꿔야 한다.");
+          }
+        })
+     }
+
+     document.querySelector('button').addEventListener('click',function(){
+         console.log("클릭");
+         checkTextarea();
+     })
     </script>
     
 </body>
